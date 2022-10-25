@@ -7,4 +7,9 @@ type Query {
   Hello: String!
   getRandomNumber: Float!
   randomFromZeroTo(n: Int): Int!
+  addToDo(toDo: String!): String!
+  getToDo: String!
+  getByIdToDo(id: Int!): String!
+  deleteToDo: String!
+  updateToDo(id: Int!): String!
 }
