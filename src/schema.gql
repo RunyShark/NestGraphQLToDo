@@ -15,7 +15,7 @@ type Query {
   randomFromZeroTo(n: Int): Int!
   addToDo(toDo: String!): String!
   getAllToDo: [Todo!]!
-  todos(id: Int!): String!
+  getByIdToDo(id: Int!): Todo!
   deleteToDo: String!
   updateToDo(id: Int!): String!
 }
