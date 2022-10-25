@@ -1,4 +1,5 @@
 import { Args, Int, Query, Resolver } from '@nestjs/graphql';
+import { Todo } from './entity/todo.entity';
 
 @Resolver()
 export class TodosResolver {
@@ -11,12 +12,23 @@ export class TodosResolver {
     return toDo;
   }
 
-  @Query(() => String)
-  getToDo(): string {
-    return this.todo;
+  @Query(() => [Todo])
+  getAllToDo(): Todo[] {
+    return [
+      {
+        id: 1,
+        description: 'sleep1',
+        done: false,
+      },
+      {
+        id: 2,
+        description: 'sleep2',
+        done: false,
+      },
+    ];
   }
 
-  @Query(() => String)
+  @Query(() => String, { name: 'todos' })
   getByIdToDo(
     @Args('id', { type: () => Int })
     id: number,

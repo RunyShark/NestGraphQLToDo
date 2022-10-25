@@ -2,14 +2,20 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
 type Query {
   """Hello word"""
   Hello: String!
   getRandomNumber: Float!
   randomFromZeroTo(n: Int): Int!
   addToDo(toDo: String!): String!
-  getToDo: String!
-  getByIdToDo(id: Int!): String!
+  getAllToDo: [Todo!]!
+  todos(id: Int!): String!
   deleteToDo: String!
   updateToDo(id: Int!): String!
 }
