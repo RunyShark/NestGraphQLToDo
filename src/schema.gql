@@ -13,9 +13,16 @@ type Query {
   Hello: String!
   getRandomNumber: Float!
   randomFromZeroTo(n: Int): Int!
-  addToDo(toDo: String!): String!
   getAllToDo: [Todo!]!
   getByIdToDo(id: Int!): Todo!
   deleteToDo: String!
   updateToDo(id: Int!): String!
+}
+
+type Mutation {
+  CreateTodoInputs(CreateTodoInput: CreateTodoInput!): Todo!
+}
+
+input CreateTodoInput {
+  description: String!
 }

@@ -3,6 +3,7 @@ import {
   NotAcceptableException,
   NotFoundException,
 } from '@nestjs/common';
+import { CreateTodoInput } from './dto/input/CreateTodoInput';
 import { Todo } from './entity/todo.entity';
 
 @Injectable()
@@ -30,9 +31,13 @@ export class TodosService {
     return toDoById;
   }
 
-  create(toDo: Todo): Todo {
-    this.toDo.push(toDo);
-    return toDo;
+  create({ description }: CreateTodoInput): Todo {
+    const todo = new Todo();
+    todo.description = description;
+    todo.done = false;
+    todo.id = Math.max(...this.toDo.map(({ id }: Todo) => id), 0) + 1;
+    this.toDo.push(todo);
+    return todo;
   }
 
   update(id: number): Todo[] {
