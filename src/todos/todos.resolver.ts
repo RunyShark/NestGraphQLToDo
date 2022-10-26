@@ -1,16 +1,17 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Todo } from './entity/todo.entity';
 import { TodosService } from './todos.service';
+import { CreateTodoDTO } from './dto';
 
 @Resolver()
 export class TodosResolver {
   constructor(private readonly TodosService: TodosService) {}
   private todo = '';
 
-  @Mutation(() => Todo)
+  @Mutation(() => Todo, { name: 'CreateTodo' })
   addToDo(
-    @Args('toDo', { type: () => Todo })
-    toDo: Todo,
+    @Args('toDo', { type: () => CreateTodoDTO })
+    toDo: CreateTodoDTO,
   ): Todo {
     return this.TodosService.create(Todo);
   }
